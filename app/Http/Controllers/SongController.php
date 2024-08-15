@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Song;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class SongController extends Controller
 {
@@ -52,6 +53,10 @@ class SongController extends Controller
             return "Thiếu dữ liệu";
         }
 
+        Mail::send("mail", ["name" =>  $aInput['name']], function ($message) {
+            $message->subject("Bài hát mới");
+            $message->to("minhquang121203@gmail.com");
+        });
 
         $song->fill($aInput);
         $song->save();

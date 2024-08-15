@@ -15,7 +15,7 @@ const CD = cd.animate([
 });
 
 const getList = async () => {
-  var url = root_url + "songs/getList";
+  var url = root_url + "song/getList";
   songs = (await axios.get(url)).data;
   currentSong = songs[currentIndex];
   const html = songs.map((song, index) => {
